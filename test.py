@@ -24,7 +24,7 @@ st.title(f'{option}')
 
 # Create a slider to control the position of the vertical line
 
-df = pd.read_csv(f'{option}/debit_{option_formatted}.csv')
+df = pd.read_csv(f'stations/{option}/debit_{option_formatted}.csv')
 df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
 df['Date'] = pd.to_datetime(df['Date']) 
 
@@ -38,7 +38,7 @@ end_date = datetime.strptime(df.Date_bis.max(), '%Y-%m-%d')
 selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
 
 list_date_image = []
-for file in os.listdir(f"{option}"):
+for file in os.listdir(f"stations/{option}/images"):
     date_image = file[6:-4]
     list_date_image.append(date_image)
 st.write(list_date_image)   
@@ -112,7 +112,7 @@ formatted_date = selected_date.strftime('%Y-%m-%d')  # Formatage de la date (par
 
 st.markdown(f'**Image satellite du {formatted_date}**')
     
-chemin_image = f'{option}/image_{formatted_date}.png'  # Remplacez "chemin_vers_images" par le chemin de votre dossier contenant les images
+chemin_image = f'stations/{option}/images/image_{formatted_date}.png'  # Remplacez "chemin_vers_images" par le chemin de votre dossier contenant les images
 if os.path.exists(chemin_image):
     image = plt.imread(chemin_image)
     st.image(image, caption=f'Image_{formatted_date}', use_column_width=True)
