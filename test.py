@@ -30,7 +30,8 @@ df['Date'] = pd.to_datetime(df['Date'])
 
 df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d")
 
-start_date = datetime.strptime(df.Date_bis.min(), '%Y %m %d')
+start_date = datetime.strptime(df.Date_bis.min(), '%Y-%m-%d')
+end_date = datetime.strptime(df.Date_bis.max(), '%Y-%m-%d')
 #start_date = datetime.strptime('2015 01 01', '%Y %m %d')
 #end_date = datetime.strptime('2024 04 16', '%Y %m %d')
 
