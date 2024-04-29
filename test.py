@@ -42,7 +42,7 @@ for file in os.listdir(f"stations/{option}/images"):
     date_image = file[6:-4]
     list_date_image.append(date_image)
 
-selected_date = st.slider('', min_value=min(list_date_image), max_value=max(list_date_image), value=list_date_image, options = list_date_image)
+selected_date = st.select_slider('', min_value=min(list_date_image), max_value=max(list_date_image), value=min(list_date_image), options = list_date_image)
 
 
 # Créer une entrée numérique où l'utilisateur peut saisir une valeur
