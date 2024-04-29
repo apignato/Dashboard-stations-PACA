@@ -24,8 +24,15 @@ st.title(f'{option}')
 
 # Create a slider to control the position of the vertical line
 
-start_date = datetime.strptime('2015 01 01', '%Y %m %d')
-end_date = datetime.strptime('2024 04 16', '%Y %m %d')
+df = pd.read_csv(f'{option}/debit_{option_formatted}.csv')
+df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
+df['Date'] = pd.to_datetime(df['Date']) 
+
+df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d")
+
+start_date = datetime.strptime(df.Date_bis.min(), '%Y %m %d')
+#start_date = datetime.strptime('2015 01 01', '%Y %m %d')
+#end_date = datetime.strptime('2024 04 16', '%Y %m %d')
 
 selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
 
@@ -41,18 +48,8 @@ selected_date = st.slider('', min_value=start_date, max_value=end_date, value=st
 
 ########### Plot de la courbe de debit ##############
 
-df = pd.read_csv(f'{option}/debit_{option_formatted}.csv')
-df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
-df['Date'] = pd.to_datetime(df['Date']) 
-
-df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d")
-
-
 fig = px.line(df, x='Date_bis', y='Valeur', labels={'Date_bis': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
 
-
-
-############
 
 fig.update_layout(
         xaxis=dict(
