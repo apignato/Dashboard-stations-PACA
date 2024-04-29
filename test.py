@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 option = st.selectbox(
    "",
    ("La Durance à Meyrargues", "La Durance à Saint-Paul-les-Durance", "xxxx"),
-   index='La Durance à Meyrargues',
    placeholder="Selectionner une station...",
 )
 
