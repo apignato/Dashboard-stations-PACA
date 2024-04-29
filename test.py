@@ -44,7 +44,7 @@ for file in os.listdir(f"stations/{option}/images"):
    date_image_dt = datetime.strptime(date_image_str,"%Y-%m-%d")
    list_date_image.append(date_image)
    list_date_image_dt.append(date_image_dt)
-list_date_image
+list_date_image_str
 list_date_image_dt
 
 #selected_date = st.select_slider('', min_value=min(list_date_image), max_value=max(list_date_image), value=min(list_date_image), options = list_date_image)
