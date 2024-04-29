@@ -49,8 +49,8 @@ list_date_image_dt
 
 list_date_image_str = list_date_image_str.sort()
 
-start = list_date_image_str[0]
-end = list_date_image_str[-1]
+start = list_date_image_dt[0]
+end = list_date_image_dt[-1]
 
 selected_date = st.select_slider('', min_value=start, max_value=end, value=start, options = list_date_image_str)
 
