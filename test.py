@@ -39,7 +39,7 @@ selected_date = st.slider('', min_value=start_date, max_value=end_date, value=st
 
 list_date_image = []
 for file in os.listdir(f"{option}"):
-    date_image = file[5:-4]
+    date_image = file[6:-4]
     list_date_image.append(date_image)
 st.write(list_date_image)   
 
