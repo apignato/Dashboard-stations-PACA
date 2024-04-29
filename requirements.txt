@@ -3,5 +3,4 @@ pandas
 numpy
 plotly.express
 datetime
-os
 matplotlib.pyplot
