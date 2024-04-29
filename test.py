@@ -37,6 +37,15 @@ end_date = datetime.strptime(df.Date_bis.max(), '%Y-%m-%d')
 
 selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
 
+list_date_image = []
+for file in os.listdir(f"{option}"):
+    date_image = file[5:-4]
+    list_date_image.append(date_image)
+st.write(list_date_image)   
+
+#selected_date_bis = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
+
+
 # Créer une entrée numérique où l'utilisateur peut saisir une valeur
 #input_date_str = st.text_input("Ou sélectionner une date en input (YYYY-MM-DD)", "2024-04-16")
 #input_date = datetime.strptime(input_date_str, '%Y-%m-%d')
