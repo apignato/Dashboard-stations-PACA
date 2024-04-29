@@ -50,7 +50,7 @@ list_date_image_dt
 
 list_date_image_str = list_date_image_str.sort()
 
-start =  datetime.strptime(list_date_image_str[0], '%Y-%m-%d')
+start =  datetime.strptime(list_date_image_str[1], '%Y-%m-%d')
 end = list_date_image_dt[-1]
 
 selected_date = st.select_slider('', min_value=start, max_value=end, value=start, options = list_date_image_str)
