@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 
-import os
+import requests, os
 import matplotlib.pyplot as plt
 
 
