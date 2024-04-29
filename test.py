@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 
-import requests, os
+import os
 import matplotlib.pyplot as plt
 
 
@@ -42,7 +42,7 @@ selected_date = st.slider('', min_value=start_date, max_value=end_date, value=st
 
 ########### Plot de la courbe de debit ##############
 
-df = pd.read_csv(f'/Users/apollinepignato/Documents/Streamlit_project/{option}/debit_{option_formatted}.csv')
+df = pd.read_csv(f'{option}/debit_{option_formatted}.csv')
 df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
 df['Date'] = pd.to_datetime(df['Date']) 
 
