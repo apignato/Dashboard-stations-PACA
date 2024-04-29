@@ -1,4 +1,7 @@
 streamlit
 pandas
 numpy
-plotly
+plotly.express
+datetime
+os
+matplotlib.pyplot
