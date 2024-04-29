@@ -42,7 +42,7 @@ list_date_image_dt = []
 for file in os.listdir(f"stations/{option}/images"):
    date_image_str = file[6:-4]
    date_image_dt = datetime.strptime(date_image_str,"%Y-%m-%d")
-   list_date_image.append(date_image)
+   list_date_image_str.append(date_image_str)
    list_date_image_dt.append(date_image_dt)
 list_date_image_str
 list_date_image_dt
