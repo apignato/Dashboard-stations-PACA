@@ -8,7 +8,7 @@ import os
 import matplotlib.pyplot as plt
 
 
-# Create a Streamlit app
+# Creation d'une selectbox pour choisir la station a afficher
 
 option = st.selectbox(
    "",
@@ -23,7 +23,7 @@ st.title(f'{option}')
 
 ########## Creation du slider #############
 
-# Create a slider to control the position of the vertical line
+# Importer les donnees
 
 df = pd.read_csv(f'stations/{option}/debit_{option_formatted}.csv')
 df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
@@ -31,10 +31,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 
 df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d") #conversion en str
 
-#start_date = datetime.strptime(df.Date_bis.min(), '%Y-%m-%d')
-#end_date = datetime.strptime(df.Date_bis.max(), '%Y-%m-%d')
-#selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
-
+# Recuperation des dates des images satellite
 
 list_date_image_dt = []
 for file in os.listdir(f"stations/{option}/images"):
@@ -44,30 +41,25 @@ for file in os.listdir(f"stations/{option}/images"):
 
 list_date_image_dt.sort()
 
-start =  min(list_date_image_dt)
-end = max(list_date_image_dt)
+#start =  min(list_date_image_dt)
+#end = max(list_date_image_dt)
 
-#start =  datetime.strptime(list_date_image_str[1], '%Y-%m-%d')
-#end = list_date_image_dt[-1]
-
+# creation du slider
 selected_date = st.select_slider('',  value=start, options = list_date_image_dt)
 
 
-# Créer une entrée numérique où l'utilisateur peut saisir une valeur
-#input_date_str = st.text_input("Ou sélectionner une date en input (YYYY-MM-DD)", "2024-04-16")
-#input_date = datetime.strptime(input_date_str, '%Y-%m-%d')
-#d = st.date_input("sélectionner une date en input", datetime.date(2015, 1, 1))
-
-
-#if input_date:
-    #selected_date = input_date
-#st.slider('Selectionner une date avec le curseur', min_value=start_date, max_value=end_date, value=selected_date)
-
 ########### Plot de la courbe de debit ##############
 
+date_debut = df.loc[0,'Date']
+date_fin = df.Date.iloc[-1]
 
+# Créer la série de dates
+serie_dates = pd.date_range(start=date_debut, end=date_fin, freq='D')
+serie_dates = pd.DataFrame(serie_dates, columns = ['Date'])
 
-fig = px.line(df, x='Date', y='Valeur', labels={'X': 'Date', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
+merged = pd.merge(serie_dates, df, how='outer', indicator=True)
+
+fig = px.line(merged, x='Date', y='Valeur', labels={'X': 'Date', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
 
 
 fig.update_layout(
