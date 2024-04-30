@@ -27,16 +27,15 @@ st.title(f'{option}')
 
 df = pd.read_csv(f'stations/{option}/debit_{option_formatted}.csv')
 df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
-#df['Date'] = pd.to_datetime(df['Date']) 
+df['Date'] = pd.to_datetime(df['Date']) 
 
-#df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d")
+df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d") #conversion en str
 
-start_date = datetime.strptime(df.Date.min(), '%Y-%m-%d')
-end_date = datetime.strptime(df.Date.max(), '%Y-%m-%d')
-#start_date = datetime.strptime('2015 01 01', '%Y %m %d')
-#end_date = datetime.strptime('2024 04 16', '%Y %m %d')
+start_date = datetime.strptime(df.Date_bis.min(), '%Y-%m-%d')
+end_date = datetime.strptime(df.Date_bis.max(), '%Y-%m-%d')
 
-selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
+
+#selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
 
 list_date_image_str = []
 list_date_image_dt = []
@@ -48,12 +47,15 @@ for file in os.listdir(f"stations/{option}/images"):
 list_date_image_str
 list_date_image_dt
 
-list_date_image_str = list_date_image_str.sort()
+list_date_image_dt.sort()
+
+start =  min(list_date_image_dt)
+end = nax(list_date_image_dt)
 
 #start =  datetime.strptime(list_date_image_str[1], '%Y-%m-%d')
 #end = list_date_image_dt[-1]
 
-#selected_date = st.select_slider('', min_value=start, max_value=end, value=start, options = list_date_image_str)
+selected_date = st.select_slider('', min_value=start, max_value=end, value=start, options = list_date_image_dt)
 
 
 # Créer une entrée numérique où l'utilisateur peut saisir une valeur
@@ -68,7 +70,7 @@ list_date_image_str = list_date_image_str.sort()
 
 ########### Plot de la courbe de debit ##############
 
-fig = px.line(df, x='Date', y='Valeur', labels={'Date': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
+fig = px.line(df, x='Date_bis', y='Valeur', labels={'Date_bis': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
 
 
 fig.update_layout(
