@@ -55,7 +55,7 @@ end = max(list_date_image_dt)
 #start =  datetime.strptime(list_date_image_str[1], '%Y-%m-%d')
 #end = list_date_image_dt[-1]
 
-selected_date = st.select_slider('', min_value=start, max_value=end, value=start, options = list_date_image_dt)
+selected_date = st.select_slider('',  value=start, options = list_date_image_dt)
 
 
 # Créer une entrée numérique où l'utilisateur peut saisir une valeur
