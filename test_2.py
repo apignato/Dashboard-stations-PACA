@@ -50,7 +50,7 @@ list_date_image_dt
 list_date_image_dt.sort()
 
 start =  min(list_date_image_dt)
-end = nax(list_date_image_dt)
+end = max(list_date_image_dt)
 
 #start =  datetime.strptime(list_date_image_str[1], '%Y-%m-%d')
 #end = list_date_image_dt[-1]
