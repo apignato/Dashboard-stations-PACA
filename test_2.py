@@ -65,19 +65,9 @@ selected_date = st.select_slider('',  value=start, options = list_date_image_dt)
 
 ########### Plot de la courbe de debit ##############
 
-new_x= []
-for points, row in df.iterrows():
-   new_x.append(row['Date_bis'])
-
-new_x_dt = []
-for date in new_x :
-   date_dt = datetime.strptime(date, '%Y-%m-%d')
-   new_x_dt.append(date_dt)
-
-df['X'] = pd.Series(new_x_dt)
 
 
-fig = px.line(df, x='X', y='Valeur', labels={'X': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
+fig = px.line(df, x='Date', y='Valeur', labels={'X': 'Date', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
 
 
 fig.update_layout(
