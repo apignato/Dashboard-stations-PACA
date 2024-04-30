@@ -41,8 +41,8 @@ for file in os.listdir(f"stations/{option}/images"):
 
 list_date_image_dt.sort()
 
-#start =  min(list_date_image_dt)
-#end = max(list_date_image_dt)
+start =  min(list_date_image_dt)
+end = max(list_date_image_dt)
 
 # creation du slider
 selected_date = st.select_slider('',  value=start, options = list_date_image_dt)
