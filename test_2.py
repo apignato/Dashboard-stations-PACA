@@ -37,15 +37,12 @@ end_date = datetime.strptime(df.Date_bis.max(), '%Y-%m-%d')
 
 #selected_date = st.slider('', min_value=start_date, max_value=end_date, value=start_date)
 
-list_date_image_str = []
+
 list_date_image_dt = []
 for file in os.listdir(f"stations/{option}/images"):
    date_image_str = str(file[6:-4])
    date_image_dt = datetime.strptime(date_image_str,"%Y-%m-%d")
-   list_date_image_str.append(date_image_str)
    list_date_image_dt.append(date_image_dt)
-list_date_image_str
-list_date_image_dt
 
 list_date_image_dt.sort()
 
@@ -70,7 +67,7 @@ selected_date = st.select_slider('',  value=start, options = list_date_image_dt)
 
 ########### Plot de la courbe de debit ##############
 
-fig = px.line(df, x='Date_bis', y='Valeur', labels={'Date_bis': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
+fig = px.line(df, x='Date', y='Valeur', labels={'Date': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
 
 
 fig.update_layout(
