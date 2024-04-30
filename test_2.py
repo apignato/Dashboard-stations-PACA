@@ -74,7 +74,8 @@ for date in new_x :
    date_dt = datetime.strptime(date, '%Y-%m-%d')
    new_x_dt.append(date_dt)
 
-X = pd.Series(new_x_dt)
+df['X'] = pd.Series(new_x_dt)
+
 
 fig = px.line(df, x='X', y='Valeur', labels={'X': 'Temps', 'Valeur': 'Debit (en L/s)'}, title="Debit d'eau")
 
