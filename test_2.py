@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 option = st.selectbox(
    "",
-   ("La Durance à Meyrargues", "La Durance à Saint-Paul-les-Durance","Le Gapeau a Hyeres", "Le Verdon à Vinon-sur-Verdon", 'La Durance a Embrun'),
+   ("La Durance à Meyrargues", "La Durance à Saint-Paul-les-Durance","Le Gapeau a Hyeres", "Le Verdon à Vinon-sur-Verdon", 'La Durance a Embrun', 'La Durance a Oraison'),
    placeholder="Selectionner une station...",
 )
 
