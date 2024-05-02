@@ -25,7 +25,7 @@ st.title(f'{option}')
 
 # Importer les donnees
 
-df = pd.read_csv(f'stations/{option}/debit_{option_formatted}.csv')
+df = pd.read_csv(f'stations_bis/{option}/debit_{option_formatted}.csv')
 df = df.rename(columns={'Date (TU)': 'Date', 'Valeur (en l/s)': 'Valeur'})
 df['Date'] = pd.to_datetime(df['Date']) 
 
@@ -34,7 +34,7 @@ df['Date_bis'] = df['Date'].dt.strftime("%Y-%m-%d") #conversion en str
 # Recuperation des dates des images satellite
 
 list_date_image_dt = []
-for file in os.listdir(f"stations/{option}/images"):
+for file in os.listdir(f"stations_bis/{option}/images"):
    date_image_str = str(file[6:-4])
    date_image_dt = datetime.strptime(date_image_str,"%Y-%m-%d")
    list_date_image_dt.append(date_image_dt)
@@ -113,7 +113,7 @@ formatted_date = selected_date.strftime('%Y-%m-%d')  # Formatage de la date (par
 
 st.markdown(f'**Image satellite du {formatted_date}**')
     
-chemin_image = f'stations/{option}/images/image_{formatted_date}.png'  # Remplacez "chemin_vers_images" par le chemin de votre dossier contenant les images
+chemin_image = f'stations_bis/{option}/images/image_{formatted_date}.png'  # Remplacez "chemin_vers_images" par le chemin de votre dossier contenant les images
 if os.path.exists(chemin_image):
     image = plt.imread(chemin_image)
     st.image(image, caption=f'Image_{formatted_date}', use_column_width=True)
