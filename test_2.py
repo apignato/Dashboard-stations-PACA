@@ -110,8 +110,9 @@ formatted_date = selected_date.strftime('%Y-%m-%d')  # Formatage de la date (par
 # Afficher le titre avec la date sélectionnée
 
 #st.title (f'Image satellite du {formatted_date}')
-
-st.markdown(f'**Image satellite du {formatted_date}**')
+left_co, cent_co,last_co = st.columns(3)
+with cent_co:
+   st.markdown(f'**Image satellite du {formatted_date}**')
     
 chemin_image = f'stations/{option}/images/image_{formatted_date}.png'  # Remplacez "chemin_vers_images" par le chemin de votre dossier contenant les images
 if os.path.exists(chemin_image):
