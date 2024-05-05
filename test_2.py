@@ -116,6 +116,6 @@ st.markdown(f'**Image satellite du {formatted_date}**')
 chemin_image = f'stations/{option}/images/image_{formatted_date}.png'  # Remplacez "chemin_vers_images" par le chemin de votre dossier contenant les images
 if os.path.exists(chemin_image):
     image = plt.imread(chemin_image)
-    st.image(image, caption=f'Image_{formatted_date}', width = 200)
+    st.image(image, caption=f'Image_{formatted_date}', width = 300)
 else:
     st.write('Pas d\'image satellite disponible a cette date.')
